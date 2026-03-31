@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>여의도 서울의원 | Yeouido Seoul Clinic</title>
+<meta name="description" content="여의도 서울의원 — 내과 전문 진료, 피부미용 시술, 건강검진을 한 곳에서. 여의도 FKI타워 B1층.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Noto+Sans+KR:wght@200;300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#ffffff;--dark:#f7f7f5;--dark2:#f0eeeb;--dark3:#e8e6e2;
+  --gold:#b08d57;--gold-light:#8a6d3b;--gold-dark:#a6844a;
+  --white:#1a1a1a;--off-white:#f5f3ef;--cream:#faf8f4;
+  --text:#2d2d2d;--text-sub:#6b6b6b;--text-dark:#555249;
+  --accent:#b08d57;--accent2:#8b7355;
+  --teal:#4a8e87;--pink:#b46a7a;--orange:#c49044;
+  --radius:0px;--radius-sm:0px;
+  --header-h:72px;
+  --font-serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --font-sans:'Noto Sans KR','Inter',sans-serif;
+  --transition:0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-sans);color:var(--text);background:var(--black);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+::selection{background:var(--gold);color:#fff;}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#f0f0f0;}
+::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:3px;}
+
+/* Header */
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--header-h);transition:all 0.4s;}
+.header--top{background:rgba(255,255,255,0.8);backdrop-filter:blur(10px);}
+.header--scrolled{background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.08);box-shadow:0 1px 8px rgba(0,0,0,0.04);}
+.header-inner{max-width:1400px;margin:0 auto;padding:0 48px;height:100%;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;flex-direction:column;align-items:flex-start;}
+.logo-main{font-family:var(--font-serif);font-size:1.3rem;font-weight:600;color:#1a1a1a;letter-spacing:0.08em;}
+.logo-sub{font-family:var(--font-serif);font-size:0.65rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-top:-2px;}
+.desktop-nav{display:flex;gap:0;}
+.desktop-nav a{padding:8px 20px;font-size:0.9rem;font-weight:400;color:#555;letter-spacing:0.06em;transition:color 0.3s;position:relative;}
+.desktop-nav a::after{content:'';position:absolute;bottom:4px;left:20px;right:20px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.3s;transform-origin:center;}
+.desktop-nav a:hover,.desktop-nav a.active{color:#1a1a1a;}
+.desktop-nav a:hover::after,.desktop-nav a.active::after{transform:scaleX(1);}
+.header-cta{display:flex;align-items:center;gap:16px;}
+.header-phone{font-size:0.75rem;color:var(--gold);letter-spacing:0.08em;font-weight:500;transition:color 0.3s;}
+.header-phone:hover{color:var(--gold-light);}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative;flex-shrink:0;}
+.menu-btn span{display:block;width:100%;height:1px;background:#1a1a1a;position:absolute;left:0;transition:0.3s;}
+.menu-btn span:nth-child(1){top:0;}.menu-btn span:nth-child(2){top:9px;}.menu-btn span:nth-child(3){top:18px;}
+.menu-btn.open span:nth-child(1){top:9px;transform:rotate(45deg);}.menu-btn.open span:nth-child(2){opacity:0;}.menu-btn.open span:nth-child(3){top:9px;transform:rotate(-45deg);}
+.mobile-nav{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.98);z-index:999;padding:120px 48px 48px;overflow-y:auto;}
+.mobile-nav.open{display:flex;flex-direction:column;gap:0;}
+.mobile-nav a{display:block;padding:20px 0;font-family:var(--font-serif);font-size:1.8rem;font-weight:300;color:#888;border-bottom:1px solid rgba(0,0,0,0.06);transition:color 0.3s,padding-left 0.3s;}
+.mobile-nav a:hover{color:#1a1a1a;padding-left:12px;}
+
+/* Pages */
+.page{display:none;padding-top:var(--header-h);}.page.active{display:block;}
+
+/* Hero */
+.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 8s ease-out;}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.35) 40%,rgba(255,255,255,0.75) 100%);}
+.hero-content{position:relative;z-index:2;color:#1a1a1a;padding:0 32px;max-width:800px;}
+.hero-content .en-tag{font-family:var(--font-serif);font-size:0.8rem;color:var(--gold);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:24px;font-weight:400;}
+.hero-content h1{font-family:var(--font-serif);font-size:clamp(2.2rem,5.5vw,4rem);font-weight:300;line-height:1.2;letter-spacing:0.02em;margin-bottom:20px;}
+.hero-content h1 em{font-style:italic;color:var(--gold);text-shadow:0 1px 2px rgba(0,0,0,0.1);}
+.hero-content .sub{font-size:0.88rem;font-weight:300;color:var(--text-sub);letter-spacing:0.04em;margin-bottom:48px;}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.hero-scroll span{font-size:0.65rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;}
+.scroll-line{width:1px;height:40px;background:linear-gradient(180deg,var(--gold),transparent);animation:scrollDown 2s infinite;}
+@keyframes scrollDown{0%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(20px);}}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 36px;font-size:0.78rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;transition:all var(--transition);font-family:var(--font-sans);}
+.btn-gold{background:var(--gold);color:#fff;}.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);color:#fff;}
+.btn-outline{background:transparent;border:1px solid var(--gold);color:var(--gold);}.btn-outline:hover{background:var(--gold);color:#fff;}
+.btn-white{background:transparent;border:1px solid rgba(0,0,0,0.2);color:#1a1a1a;}.btn-white:hover{border-color:#1a1a1a;background:rgba(0,0,0,0.03);}
+.btn svg{width:16px;height:16px;}
+
+/* Sections */
+section{padding:120px 48px;}
+.container{max-width:1200px;margin:0 auto;}
+.sec-label{font-family:var(--font-serif);font-size:0.72rem;color:var(--gold);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:16px;}
+.sec-title{font-family:var(--font-serif);font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:300;color:#1a1a1a;line-height:1.3;margin-bottom:16px;letter-spacing:0.01em;}
+.sec-desc{font-size:0.88rem;color:var(--text-sub);max-width:500px;font-weight:300;line-height:1.9;}
+.divider{width:40px;height:1px;background:var(--gold);margin:24px 0;}
+.sec-bg-dark{background:#f2f1ee;}
+.sec-bg-dark2{background:#eae8e4;}
+.sec-bg-cream{background:var(--cream);color:#1a1a1a;}
+
+/* Service Showcase Grid */
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-top:64px;}
+.showcase-item{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;}
+.showcase-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);filter:brightness(0.75);}
+.showcase-item:hover img{transform:scale(1.1);filter:brightness(0.5);}
+.showcase-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:all 0.5s;}
+.showcase-num{font-family:var(--font-serif);font-size:0.7rem;color:var(--gold);letter-spacing:0.2em;margin-bottom:auto;}
+.showcase-overlay h3{font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#fff;margin-bottom:6px;transition:transform 0.5s;}
+.showcase-overlay p{font-size:0.78rem;color:rgba(255,255,255,0.75);max-height:0;overflow:hidden;transition:max-height 0.5s,opacity 0.5s;opacity:0;}
+.showcase-item:hover .showcase-overlay p{max-height:60px;opacity:1;}
+.showcase-item:hover .showcase-overlay h3{transform:translateY(-4px);}
+.showcase-link{display:inline-flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-top:16px;opacity:0;transform:translateY(8px);transition:all 0.5s 0.1s;}
+.showcase-item:hover .showcase-link{opacity:1;transform:translateY(0);}
+
+/* Featured Cards (horizontal) */
+.featured-row{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:48px;}
+.featured-card{position:relative;height:420px;overflow:hidden;cursor:pointer;}
+.featured-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);filter:brightness(0.7);}
+.featured-card:hover img{transform:scale(1.08);filter:brightness(0.45);}
+.featured-info{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px;}
+.featured-info .tag{font-size:0.65rem;color:var(--gold);letter-spacing:0.25em;text-transform:uppercase;margin-bottom:16px;font-weight:500;}
+.featured-info h3{font-family:var(--font-serif);font-size:1.6rem;font-weight:400;color:#fff;margin-bottom:8px;}
+.featured-info p{font-size:0.82rem;color:rgba(255,255,255,0.7);font-weight:300;}
+
+/* Info Cards */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.info-card{background:#fff;padding:40px 32px;border:1px solid rgba(0,0,0,0.06);transition:all var(--transition);border-radius:4px;}
+.info-card:hover{border-color:rgba(176,141,87,0.3);transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.06);}
+.info-card .icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;color:var(--gold);}
+.info-card h4{font-family:var(--font-serif);font-size:1.05rem;font-weight:500;color:#1a1a1a;margin-bottom:10px;}
+.info-card p{font-size:0.82rem;color:var(--text-sub);font-weight:300;line-height:1.8;}
+
+/* Photo Banner */
+.photo-banner{position:relative;height:400px;overflow:hidden;}
+.photo-banner img{width:100%;height:100%;object-fit:cover;filter:brightness(0.55);}
+.photo-banner-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px;}
+.photo-banner-content h2{font-family:var(--font-serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;color:#fff;margin-bottom:8px;}
+.photo-banner-content .sec-label{color:#d4b87a;}
+
+/* Data Table */
+.data-table{width:100%;border-collapse:collapse;font-size:0.85rem;}
+.data-table thead{border-bottom:1px solid var(--gold);}
+.data-table th{padding:16px 20px;font-weight:500;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);text-align:left;}
+.data-table td{padding:18px 20px;border-bottom:1px solid rgba(0,0,0,0.06);color:var(--text-sub);font-weight:300;}
+.data-table tr:hover td{color:#1a1a1a;background:rgba(0,0,0,0.02);}
+.data-table .highlight{color:#1a1a1a;font-weight:500;}
+
+/* Checklist */
+.checklist{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;}
+.checklist li{padding:18px 24px;font-size:0.88rem;color:var(--text-sub);border-bottom:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;gap:12px;transition:color 0.3s;}
+.checklist li:hover{color:#1a1a1a;}
+.checklist li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+/* Gallery Strip */
+.gallery-strip{display:flex;gap:2px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.gallery-strip::-webkit-scrollbar{display:none;}
+.gallery-item{flex:0 0 320px;height:240px;scroll-snap-align:start;position:relative;overflow:hidden;}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s;filter:brightness(0.85);}
+.gallery-item:hover img{transform:scale(1.08);filter:brightness(0.6);}
+.gallery-item .caption{position:absolute;bottom:0;left:0;right:0;padding:16px 20px;font-size:0.75rem;color:#fff;letter-spacing:0.06em;opacity:0;transform:translateY(8px);transition:all 0.4s;}
+.gallery-item:hover .caption{opacity:1;transform:translateY(0);}
+
+/* Marquee */
+.marquee-wrap{padding:20px 0;border-top:1px solid rgba(0,0,0,0.06);border-bottom:1px solid rgba(0,0,0,0.06);overflow:hidden;}
+.marquee{display:flex;gap:48px;animation:marquee 30s linear infinite;white-space:nowrap;}
+.marquee span{font-family:var(--font-serif);font-size:0.85rem;color:var(--text-sub);letter-spacing:0.08em;font-weight:300;}
+.marquee span.dot{color:var(--gold);font-size:0.6rem;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* Stats */
+.stats-row{display:flex;justify-content:center;gap:80px;padding:80px 48px;border-bottom:1px solid rgba(0,0,0,0.06);}
+.stat-item{text-align:center;}
+.stat-num{font-family:var(--font-serif);font-size:3rem;font-weight:300;color:#1a1a1a;line-height:1;}
+.stat-label{font-size:0.72rem;color:var(--text-sub);letter-spacing:0.1em;text-transform:uppercase;margin-top:8px;}
+
+/* CTA Section */
+.cta-section{padding:100px 48px;text-align:center;background:#f7f6f3;border-top:1px solid rgba(0,0,0,0.04);}
+.cta-section h3{font-family:var(--font-serif);font-size:1.6rem;font-weight:300;color:#1a1a1a;margin-bottom:12px;}
+.cta-section p{font-size:0.85rem;color:var(--text-sub);margin-bottom:32px;font-weight:300;}
+
+/* Dose Tags */
+.dose-tags{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;}
+.dose-tag{padding:8px 20px;border:1px solid;font-size:0.82rem;font-weight:500;letter-spacing:0.04em;}
+
+/* Map */
+.map-wrap{overflow:hidden;border:1px solid rgba(0,0,0,0.08);border-radius:4px;min-height:360px;}
+.map-wrap .root_daum_roughmap{width:100%!important;}
+.map-wrap .wrap_map{width:100%!important;height:360px!important;}
+
+/* Notice Banner */
+.notice-banner{background:#fff;border:1px solid rgba(176,141,87,0.2);padding:20px 32px;text-align:center;font-size:0.85rem;color:var(--text-sub);max-width:1200px;margin:0 auto;border-radius:4px;}
+.notice-banner strong{color:var(--gold);font-weight:600;}
+
+/* Badge */
+.badge{display:inline-block;font-size:0.65rem;font-weight:500;padding:4px 12px;letter-spacing:0.1em;text-transform:uppercase;}
+.badge-gold{background:var(--gold);color:#fff;}.badge-outline{border:1px solid var(--gold);color:var(--gold);}
+.badge-teal{background:var(--teal);color:#fff;}.badge-pink{background:var(--pink);color:#fff;}.badge-green{background:#4a7c59;color:#fff;}
+
+/* Promo Card */
+.promo-card{background:#fff;border:1px solid rgba(0,0,0,0.06);padding:40px 32px;transition:border-color 0.3s;border-radius:4px;}
+.promo-card:hover{border-color:rgba(176,141,87,0.3);}
+.promo-card h4{font-family:var(--font-serif);font-size:1.1rem;font-weight:500;color:#1a1a1a;margin-bottom:8px;}
+
+/* Footer */
+.footer{background:#2a2a2a;border-top:1px solid rgba(0,0,0,0.08);padding:80px 48px 48px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;}
+.footer-logo{font-family:var(--font-serif);font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:4px;}
+.footer-logo-sub{font-family:var(--font-serif);font-size:0.6rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:20px;}
+.footer-info{font-size:0.8rem;color:#aaa;line-height:2.2;font-weight:300;}
+.footer-title{font-size:0.72rem;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;font-weight:500;}
+.footer-links a{display:block;font-size:0.82rem;color:#aaa;padding:6px 0;transition:color 0.3s;font-weight:300;}
+.footer-links a:hover{color:#fff;}
+.footer-bottom{max-width:1200px;margin:48px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;font-size:0.72rem;color:#888;}
+.footer-sns{display:flex;gap:12px;}
+.footer-sns a{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.15);color:#aaa;font-size:0.7rem;font-weight:600;transition:all 0.3s;letter-spacing:0.02em;}
+.footer-sns a:hover{border-color:var(--gold);color:var(--gold);}
+
+/* Floating */
+.floating{position:fixed;bottom:32px;right:32px;z-index:900;display:flex;flex-direction:column;gap:8px;}
+.fab{width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--gold);color:#fff;border:none;cursor:pointer;transition:all 0.3s;font-size:0.6rem;font-weight:600;letter-spacing:0.04em;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.12);}
+.fab:hover{background:var(--gold-light);transform:translateY(-3px);color:#fff;}
+.fab svg{width:20px;height:20px;}
+.fab-dark{background:#fff;color:#1a1a1a;border:1px solid rgba(0,0,0,0.08);}
+.fab-dark:hover{border-color:var(--gold);color:var(--gold);background:#fff;}
+
+/* Animations */
+.anim{opacity:0;transform:translateY(30px);transition:opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);}
+.anim-left{opacity:0;transform:translateX(-40px);transition:opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);}
+.anim-right{opacity:0;transform:translateX(40px);transition:opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);}
+.anim-scale{opacity:0;transform:scale(0.95);transition:opacity 0.8s,transform 0.8s;}
+.anim.show,.anim-left.show,.anim-right.show,.anim-scale.show{opacity:1;transform:none;}
+.anim-d1{transition-delay:0.1s;}.anim-d2{transition-delay:0.2s;}.anim-d3{transition-delay:0.3s;}.anim-d4{transition-delay:0.4s;}.anim-d5{transition-delay:0.5s;}.anim-d6{transition-delay:0.6s;}
+
+/* Responsive */
+@media(max-width:900px){
+  .desktop-nav,.header-phone{display:none;}
+  .menu-btn{display:block;}
+  section{padding:60px 20px;}
+  .hero{height:100svh;}
+  .hero-content{padding:0 20px;}
+  .hero-content .sub{margin-bottom:32px;}
+  .header-inner{padding:0 20px;}
+  .showcase-grid{grid-template-columns:1fr;gap:12px;margin-top:40px;}
+  .showcase-item{aspect-ratio:4/3;}
+  .showcase-overlay{padding:24px;}
+  .showcase-overlay h3{font-size:1.2rem;}
+  .showcase-overlay p{max-height:60px;opacity:1;}
+  .showcase-link{opacity:1;transform:translateY(0);}
+  .featured-row{grid-template-columns:1fr;gap:12px;}
+  .featured-card{height:280px;}
+  .featured-info{padding:24px;}
+  .featured-info h3{font-size:1.3rem;}
+  .info-grid{grid-template-columns:1fr!important;gap:16px;}
+  .info-card{padding:28px 24px;}
+  .stats-row{flex-direction:column;gap:40px;padding:60px 24px;}
+  .footer-inner{grid-template-columns:1fr;gap:32px;}
+  .footer-bottom{flex-direction:column;gap:16px;text-align:center;}
+  .gallery-item{flex:0 0 240px;height:180px;}
+  .floating{bottom:16px;right:16px;}
+  .fab{width:44px;height:44px;}
+  .photo-banner{height:260px;}
+  .photo-banner-content{padding:24px;}
+  .hour-detail{display:none;}
+  .btn{padding:12px 24px;font-size:0.75rem;}
+  .notice-banner{padding:16px 20px;font-size:0.82rem;}
+  .cta-section{padding:60px 20px;}
+  .cta-section h3{font-size:1.3rem;}
+  .sec-title{margin-bottom:12px;}
+  .divider{margin:16px 0;}
+  /* 인라인 2열 그리드 → 1열 */
+  .mob-1col{grid-template-columns:1fr!important;gap:24px!important;}
+  .data-table{font-size:0.8rem;}
+  .data-table td,.data-table th{padding:14px 12px;}
+  .dose-tags{gap:8px;}
+  .dose-tag{padding:6px 14px;font-size:0.78rem;}
+  .promo-card{padding:28px 24px;}
+  .notice-section{padding:32px 20px!important;}
+  .map-wrap{aspect-ratio:4/3;}
+  .mobile-nav a{font-size:1.4rem;padding:16px 0;}
+  .checklist{grid-template-columns:1fr!important;}
+}
+@media(max-width:480px){
+  section{padding:48px 16px;}
+  .showcase-grid{gap:8px;}
+  .showcase-item{aspect-ratio:3/2;}
+  .showcase-overlay{padding:20px;}
+  .showcase-overlay h3{font-size:1.1rem;}
+  .featured-card{height:240px;}
+  .featured-info h3{font-size:1.1rem;}
+  .hero-content h1{margin-bottom:16px;}
+  .gallery-item{flex:0 0 200px;height:150px;}
+  .btn{padding:11px 20px;font-size:0.72rem;}
+  .mob-1col{gap:16px!important;}
+  .notice-section{padding:24px 16px!important;}
+  .notice-banner{font-size:0.78rem;padding:14px 16px;}
+  .cta-section{padding:48px 16px;}
+  .cta-section h3{font-size:1.15rem;}
+  .photo-banner{height:220px;}
+  .photo-banner-content h2{font-size:1.3rem!important;}
+  .sec-title{font-size:1.3rem!important;}
+  .footer{padding:48px 20px 32px;}
+  .footer-logo{font-size:1rem;}
+  .mob-1col img[style*="height:400px"]{height:280px!important;}
+  .mob-1col img[style*="height:280px"]{height:220px!important;}
+  .mob-1col [style*="padding:40px 32px"]{padding:28px 20px!important;}
+  .mob-1col [style*="padding:48px 40px"]{padding:32px 20px!important;}
+}
+.hour-row{display:flex;gap:16px;padding:4px 0;border-radius:4px;transition:all 0.3s;align-items:baseline;}
+.hour-day{color:var(--gold);min-width:28px;font-size:0.82rem;}
+.hour-time{font-size:0.82rem;color:#ccc;}
+.hour-detail{font-size:0.68rem;color:#888;margin-left:auto;}
+.hour-time.closed{color:#777;}
+.hour-row.today{background:rgba(193,165,115,0.15);padding:4px 10px;margin:0 -10px;}
+.hour-row.today .hour-day{font-weight:700;}
+.hour-row.today .hour-time{font-weight:600;color:var(--gold);}
+.hour-row.today .hour-detail{color:var(--gold);opacity:0.7;}
+.hour-row.today::after{content:"오늘";font-size:0.6rem;color:#fff;background:var(--gold);padding:1px 6px;border-radius:2px;margin-left:8px;align-self:center;}
+/* 세부페이지 하단 오시는길+진료시간 */
+.page-bottom-info{padding:80px 48px;background:#f7f6f3;border-top:1px solid rgba(0,0,0,0.04);}
+.p-hour-row{display:flex;gap:16px;padding:5px 0;align-items:baseline;border-bottom:1px solid rgba(0,0,0,0.04);}
+.p-hour-day{color:var(--gold);min-width:28px;font-size:0.88rem;font-weight:500;}
+.p-hour-time{font-size:0.88rem;color:#1a1a1a;}
+.p-hour-detail{font-size:0.72rem;color:var(--text-sub);margin-left:auto;}
+.p-hour-time.p-closed{color:var(--text-sub);font-weight:300;}
+.p-hour-row.p-today{background:rgba(193,165,115,0.1);padding:5px 10px;margin:0 -10px;border-radius:4px;border-bottom:none;}
+.p-hour-row.p-today .p-hour-day{font-weight:700;}
+.p-hour-row.p-today .p-hour-time{font-weight:600;color:var(--gold);}
+.p-hour-row.p-today::after{content:"오늘";font-size:0.6rem;color:#fff;background:var(--gold);padding:1px 6px;border-radius:2px;margin-left:8px;align-self:center;}
+@media(max-width:900px){.page-bottom-info{padding:48px 20px;}.p-hour-detail{display:none;}}
+@media(max-width:480px){.page-bottom-info{padding:40px 16px;}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header header--top" id="mainHeader">
+  <div class="header-inner">
+    <a href="#" onclick="showPage('home')" class="logo">
+      <span class="logo-main">여의도 서울의원</span>
+      <span class="logo-sub">Yeouido Seoul Clinic</span>
+    </a>
+    <nav class="desktop-nav" id="desktopNav">
+      <a href="#" onclick="showPage('home')" class="active" data-page="home">Home</a>
+      <a href="#" onclick="showPage('clinic')" data-page="clinic">진료안내</a>
+      <a href="#" onclick="showPage('vaccine')" data-page="vaccine">예방접종</a>
+      <a href="#" onclick="showPage('iv')" data-page="iv">수액·주사</a>
+      <a href="#" onclick="showPage('skin')" data-page="skin">피부·리프팅</a>
+      <a href="#" onclick="showPage('skincare')" data-page="skincare">스킨케어</a>
+      <a href="#" onclick="showPage('checkup')" data-page="checkup">건강검진</a>
+    </nav>
+    <div class="header-cta">
+      <a href="tel:02-782-0051" class="header-phone">02-782-0051</a>
+      <button class="menu-btn" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#" onclick="showPage('home')">Home</a>
+  <a href="#" onclick="showPage('clinic')">진료안내</a>
+  <a href="#" onclick="showPage('vaccine')">예방접종</a>
+  <a href="#" onclick="showPage('iv')">수액·주사</a>
+  <a href="#" onclick="showPage('skin')">피부·리프팅</a>
+  <a href="#" onclick="showPage('skincare')">스킨케어·보톡스</a>
+  <a href="#" onclick="showPage('checkup')">건강검진</a>
+</nav>
+
+<!-- PAGE 1: HOME -->
+<div class="page active" id="page-home">
+
+<section class="hero">
+  <div class="hero-bg"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/8c8a887a3f134.png" alt="여의도 서울의원" id="heroImg"></div>
+  <div class="hero-content anim">
+    <div class="en-tag">Yeouido Seoul Clinic</div>
+    <h1>당신의 건강에<br><em>품격</em>을 더합니다</h1>
+    <p class="sub">내과 전문 진료 · 피부미용 시술 · 건강검진</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="tel:02-782-0051" class="btn btn-gold">예약 문의</a>
+      <a href="#" onclick="showPage('clinic')" class="btn btn-white">진료 안내</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<div class="stats-row">
+  <div class="stat-item"><div class="stat-num" data-count="30000">0</div><div class="stat-label">Patients</div></div>
+  <div class="stat-item"><div class="stat-num" data-count="98">0</div><div class="stat-label">Satisfaction %</div></div>
+</div>
+
+<div class="marquee-wrap"><div class="marquee">
+  <span>내과 전문 진료</span><span class="dot">·</span>
+  <span>10분 수액 주사</span><span class="dot">·</span>
+  <span>텐씨마·텐쎄라 리프팅</span><span class="dot">·</span>
+  <span>스킨부스터·보톡스</span><span class="dot">·</span>
+  <span>2026 국가건강검진</span><span class="dot">·</span>
+  <span>여의도 FKI타워 B1</span><span class="dot">·</span>
+  <span>내과 전문 진료</span><span class="dot">·</span>
+  <span>10분 수액 주사</span><span class="dot">·</span>
+  <span>텐씨마·텐쎄라 리프팅</span><span class="dot">·</span>
+  <span>스킨부스터·보톡스</span><span class="dot">·</span>
+  <span>2026 국가건강검진</span><span class="dot">·</span>
+  <span>여의도 FKI타워 B1</span><span class="dot">·</span>
+</div></div>
+
+<section>
+  <div class="container">
+    <div class="anim" style="text-align:center;margin-bottom:64px;">
+      <div class="sec-label">Our Services</div>
+      <div class="sec-title" style="margin-left:auto;margin-right:auto;">대표 진료 서비스</div>
+      <div class="divider" style="margin:24px auto;"></div>
+      <div class="sec-desc" style="margin:0 auto;">내과 전문 진료부터 프리미엄 피부미용까지 한 곳에서</div>
+    </div>
+  </div>
+  <div class="showcase-grid">
+    <div class="showcase-item anim anim-d1" onclick="showPage('clinic')">
+      <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/9c2161749d3e6.png" alt="내과 진료">
+      <div class="showcase-overlay"><span class="showcase-num">01</span><h3>내과 진료</h3><p>고혈압·당뇨·만성질환 전문 관리</p><span class="showcase-link">View More →</span></div>
+    </div>
+    <div class="showcase-item anim anim-d2" onclick="showPage('iv')">
+      <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/7f0c4fd37bac0.png" alt="수액·주사">
+      <div class="showcase-overlay"><span class="showcase-num">02</span><h3>수액 · 주사</h3><p>바로 맞는 10분 수액 건강충전</p><span class="showcase-link">View More →</span></div>
+    </div>
+    <div class="showcase-item anim anim-d3" onclick="showPage('skin')">
+      <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/8c73665b9df91.png" alt="피부·리프팅">
+      <div class="showcase-overlay"><span class="showcase-num">03</span><h3>피부 · 리프팅</h3><p>텐씨마·텐쎄라·레이저토닝</p><span class="showcase-link">View More →</span></div>
+    </div>
+  </div>
+  <div class="featured-row" style="margin-top:2px;">
+    <div class="featured-card anim anim-d1" onclick="showPage('skincare')">
+      <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/fb8afa5c042e4.png" alt="스킨케어">
+      <div class="featured-info"><span class="tag">Skincare & Botox</span><h3>스킨케어 · 보톡스</h3><p>리쥬란 · 물광주사 · 스킨보톡스</p></div>
+    </div>
+    <div class="featured-card anim anim-d2" onclick="showPage('checkup')">
+      <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/bcfcf5c9ef029.png" alt="건강검진">
+      <div class="featured-info"><span class="tag">Health Checkup</span><h3>건강검진</h3><p>국가검진 · 채용검진 · 혈액검사</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="notice-section" style="padding:48px 48px;">
+  <div class="notice-banner anim-scale"><strong>2026 국가건강검진 시행 중</strong> — 짝수년도 출생자 및 2026년 미수검자 무료 대상</div>
+</section>
+
+<section class="sec-bg-dark">
+  <div class="container">
+    <div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+      <div class="anim-left">
+        <div class="sec-label">Gallery</div>
+        <div class="sec-title">원내 둘러보기</div>
+        <div class="divider"></div>
+        <div class="sec-desc">쾌적하고 프라이빗한 공간에서 편안한 진료를 경험하세요.</div>
+      </div>
+      <div class="anim-right" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+        <div style="aspect-ratio:1;overflow:hidden;"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/fb8afa5c042e4.png" alt="시술실1" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;filter:brightness(0.95);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></div>
+        <div style="aspect-ratio:1;overflow:hidden;"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/d80ea6f0dd73e.png" alt="시술실2" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;filter:brightness(0.95);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></div>
+        <div style="aspect-ratio:1;overflow:hidden;"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/7bfa1c5947cd3.png" alt="수액,레이저문" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;filter:brightness(0.95);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></div>
+        <div style="aspect-ratio:1;overflow:hidden;"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/7f0c4fd37bac0.png" alt="수액실" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;filter:brightness(0.95);" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gallery-strip">
+  <div class="gallery-item"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/1a9407a0931d0.png" alt="방사선실"><div class="caption">방사선실</div></div>
+  <div class="gallery-item"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/d2f4c53df2a52.png" alt="측정실"><div class="caption">측정실</div></div>
+  <div class="gallery-item"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/9c2161749d3e6.png" alt="대기실1"><div class="caption">대기실</div></div>
+  <div class="gallery-item"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/9c2161749d3e6.png" alt="대기실2"><div class="caption">대기실</div></div>
+  <div class="gallery-item"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/8c8a887a3f134.png" alt="대기실3"><div class="caption">대기실</div></div>
+  <div class="gallery-item"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/8c73665b9df91.png" alt="대기실4"><div class="caption">대기실</div></div>
+  <div class="gallery-item"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/bcfcf5c9ef029.png" alt="데스크"><div class="caption">데스크</div></div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+      <div class="anim-left">
+        <div class="sec-label">Location</div>
+        <div class="sec-title">오시는 길</div>
+        <div class="divider"></div>
+        <div style="display:flex;flex-direction:column;gap:20px;margin-top:32px;">
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">주소</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">서울 영등포구 여의도<br>FKI타워 B1층</div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">전화</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">02-782-0051</div></div>
+          <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">교통</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">여의도역 3번 출구 방면</div></div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;">
+          <a href="https://naver.me/GI3JwKPj" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#03C75A;color:#fff;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M11.35 10.27L8.4 6.2H6.1v7.6h2.55v-4.07l2.95 4.07h2.3V6.2h-2.55v4.07z"/></svg>
+            네이버지도
+          </a>
+          <a href="https://place.map.kakao.com/22535459?referrer=daumsearch_local" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#FEE500;color:#391B1B;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3C6.13 3 3 5.58 3 8.73c0 2.07 1.37 3.88 3.43 4.9l-.7 2.58c-.06.2.18.37.35.25L9.6 14.2c.13.01.26.01.4.01 3.87 0 7-2.58 7-5.48S13.87 3 10 3z"/></svg>
+            카카오맵
+          </a>
+        </div>
+      </div>
+      <div class="anim-right"><div class="map-wrap"><div id="daumRoughmapContainer1774989837747" class="root_daum_roughmap root_daum_roughmap_landing"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section anim-scale">
+  <h3>지금 바로 문의하세요</h3>
+  <p>여의도 서울의원이 건강한 일상을 도와드립니다.</p>
+  <a href="tel:02-782-0051" class="btn btn-gold">02-782-0051</a>
+</div>
+</div>
+
+<!-- PAGE 2: 진료안내 -->
+<div class="page" id="page-clinic">
+<div class="photo-banner"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/9c2161749d3e6.png" alt="진료"><div class="photo-banner-content anim"><div class="sec-label">Medical Services</div><h2>여의도 서울의원 진료 안내</h2><p style="color:rgba(255,255,255,0.7);font-size:0.88rem;margin-top:8px;">전문 의료진이 꼼꼼하게 진료합니다</p></div></div>
+<section><div class="container">
+  <div class="anim" style="margin-bottom:64px;">
+    <div class="sec-label">Internal Medicine</div>
+    <div class="sec-title" style="font-size:1.4rem;">내과 진료 항목</div>
+    <div class="divider"></div>
+    <ul class="checklist"><li class="anim anim-d1">고혈압</li><li class="anim anim-d2">고지혈증</li><li class="anim anim-d3">당뇨병</li><li class="anim anim-d4">갑상선 질환</li><li class="anim anim-d1">통풍</li><li class="anim anim-d2">만성질환 관리</li><li class="anim anim-d3">비만 · 탈모</li><li class="anim anim-d4">대상포진</li><li class="anim anim-d5">골다공증</li></ul>
+  </div>
+  <div class="anim" style="margin-bottom:48px;">
+    <div class="sec-label">Examinations</div>
+    <div class="sec-title" style="font-size:1.4rem;">검진 서비스</div>
+    <div class="divider"></div>
+    <div class="info-grid" style="margin-top:32px;">
+      <div class="info-card anim anim-d1"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div><h4>혈액검사</h4><p>정밀 혈액 분석</p></div>
+      <div class="info-card anim anim-d2"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg></div><h4>건강검진</h4><p>국가검진 수행</p></div>
+      <div class="info-card anim anim-d3"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"/></svg></div><h4>채용검진</h4><p>입사 서류용 검진</p></div>
+      <div class="info-card anim anim-d4"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg></div><h4>예방접종</h4><p>성인 백신 접종</p></div>
+      <div class="info-card anim anim-d5"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div><h4>비타민 수액</h4><p>영양 수액 요법</p></div>
+      <div class="info-card anim anim-d6"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg></div><h4>피부 레이저</h4><p>리프팅·토닝 시술</p></div>
+    </div>
+  </div>
+</div></section>
+<div class="cta-section anim-scale"><h3>지금 바로 문의하세요</h3><p>정확한 진료와 따뜻한 상담으로 건강을 지켜드립니다.</p><a href="tel:02-782-0051" class="btn btn-gold">02-782-0051</a></div>
+<section class="page-bottom-info"><div class="container"><div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+  <div class="anim-left">
+    <div class="sec-label">Location</div>
+    <div class="sec-title" style="font-size:1.3rem;">오시는 길</div>
+    <div class="divider"></div>
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;">
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">주소</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">서울 영등포구 여의도<br>FKI타워 B1층</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">전화</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">02-782-0051</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">교통</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">여의도역 3번 출구 방면</div></div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+      <a href="https://naver.me/GI3JwKPj" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#03C75A;color:#fff;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">네이버지도</a>
+      <a href="https://place.map.kakao.com/22535459?referrer=daumsearch_local" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#FEE500;color:#391B1B;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">카카오맵</a>
+    </div>
+  </div>
+  <div class="anim-right">
+    <div class="sec-label">Hours</div>
+    <div class="sec-title" style="font-size:1.3rem;">진료시간</div>
+    <div class="divider"></div>
+    <div style="margin-top:24px;" class="page-hours">
+      <div class="p-hour-row" data-day="1"><span class="p-hour-day">월</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="2"><span class="p-hour-day">화</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="3"><span class="p-hour-day">수</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="4"><span class="p-hour-day">목</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="5"><span class="p-hour-day">금</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="6"><span class="p-hour-day">토</span><span class="p-hour-time p-closed">정기휴무</span></div>
+      <div class="p-hour-row" data-day="0"><span class="p-hour-day">일</span><span class="p-hour-time p-closed">정기휴무</span></div>
+    </div>
+    <div style="font-size:0.75rem;color:var(--text-sub);margin-top:10px;">상황에 따라 조기 마감될 수 있습니다.</div>
+  </div>
+</div></div></section>
+</div>
+
+<!-- PAGE 3: 예방접종 -->
+<div class="page" id="page-vaccine">
+<div class="photo-banner"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/1a9407a0931d0.png" alt="접종"><div class="photo-banner-content anim"><div class="sec-label">Vaccination</div><h2>성인 예방접종</h2><p style="color:rgba(255,255,255,0.7);font-size:0.88rem;margin-top:8px;">100세 시대, 접종 챙기세요</p></div></div>
+<section><div class="container"><div class="anim" style="overflow-x:auto;">
+  <table class="data-table"><thead><tr><th>백신명</th><th>대상</th><th>접종 방법</th></tr></thead><tbody>
+    <tr><td class="highlight">23가 폐렴구균 백신</td><td>만 65세 이상</td><td>1회 접종</td></tr>
+    <tr><td class="highlight">15가 폐렴구균 단백접합백신</td><td>만 65세 이상</td><td>1회 접종</td></tr>
+    <tr><td class="highlight">대상포진 백신 싱그릭스</td><td>만 50세 이상</td><td>2회 접종 (2개월 간격)</td></tr>
+    <tr><td class="highlight">백일해·파상풍·디프테리아</td><td>전 연령</td><td>매 10년마다 접종</td></tr>
+    <tr><td class="highlight">A형 간염 백신</td><td>전 연령</td><td>2회 접종 (6개월 간격)</td></tr>
+    <tr><td class="highlight">B형 간염 백신</td><td>전 연령</td><td>3회 접종 (0·1·6개월 간격)</td></tr>
+    <tr><td class="highlight">자궁경부암 가다실 9가</td><td>만 9~45세</td><td>3회 접종 (0·2·6개월 간격)</td></tr>
+    <tr><td class="highlight">홍역·볼거리·풍진 MMR</td><td>전 연령</td><td>임신 전·유행기간 1회</td></tr>
+    <tr><td class="highlight">인플루엔자 (독감)</td><td>모든 연령</td><td>매년 접종</td></tr>
+  </tbody></table>
+</div></div></section>
+<div class="cta-section anim-scale"><h3>접종 문의 전화하기</h3><p>백신 종류와 접종 일정을 안내해 드립니다.</p><a href="tel:02-782-0051" class="btn btn-gold">02-782-0051</a></div>
+<section class="page-bottom-info"><div class="container"><div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+  <div class="anim-left">
+    <div class="sec-label">Location</div>
+    <div class="sec-title" style="font-size:1.3rem;">오시는 길</div>
+    <div class="divider"></div>
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;">
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">주소</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">서울 영등포구 여의도<br>FKI타워 B1층</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">전화</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">02-782-0051</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">교통</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">여의도역 3번 출구 방면</div></div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+      <a href="https://naver.me/GI3JwKPj" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#03C75A;color:#fff;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">네이버지도</a>
+      <a href="https://place.map.kakao.com/22535459?referrer=daumsearch_local" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#FEE500;color:#391B1B;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">카카오맵</a>
+    </div>
+  </div>
+  <div class="anim-right">
+    <div class="sec-label">Hours</div>
+    <div class="sec-title" style="font-size:1.3rem;">진료시간</div>
+    <div class="divider"></div>
+    <div style="margin-top:24px;" class="page-hours">
+      <div class="p-hour-row" data-day="1"><span class="p-hour-day">월</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="2"><span class="p-hour-day">화</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="3"><span class="p-hour-day">수</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="4"><span class="p-hour-day">목</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="5"><span class="p-hour-day">금</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="6"><span class="p-hour-day">토</span><span class="p-hour-time p-closed">정기휴무</span></div>
+      <div class="p-hour-row" data-day="0"><span class="p-hour-day">일</span><span class="p-hour-time p-closed">정기휴무</span></div>
+    </div>
+    <div style="font-size:0.75rem;color:var(--text-sub);margin-top:10px;">상황에 따라 조기 마감될 수 있습니다.</div>
+  </div>
+</div></div></section>
+</div>
+
+<!-- PAGE 4: 수액·주사 -->
+<div class="page" id="page-iv">
+<div class="photo-banner"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/7f0c4fd37bac0.png" alt="수액"><div class="photo-banner-content anim"><div class="sec-label">IV Therapy</div><h2>바로 맞는 <em style="font-family:var(--font-serif);font-style:italic;color:var(--gold);">10분 수액</em></h2><p style="color:rgba(255,255,255,0.7);font-size:0.88rem;margin-top:8px;">빠르고 간편하게 건강충전 하세요</p></div></div>
+<section><div class="container">
+  <div class="sec-label anim">IV Menu</div>
+  <div class="sec-title anim" style="font-size:1.4rem;">수액 · 주사 메뉴</div>
+  <div class="divider anim"></div>
+  <div class="info-grid" style="margin-top:40px;">
+    <div class="info-card anim anim-d1"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div><h4>고용량 비타민C</h4><p>피로회복 · 면역력 강화</p></div>
+    <div class="info-card anim anim-d2"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg></div><h4>백옥주사</h4><p>미백 · 간기능 개선</p></div>
+    <div class="info-card anim anim-d3"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/></svg></div><h4>마늘주사</h4><p>에너지 충전 · 활력 회복</p></div>
+    <div class="info-card anim anim-d1"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg></div><h4>숙취주사</h4><p>간 해독 · 숙취 해소</p></div>
+    <div class="info-card anim anim-d2"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5 14.25 2.25 12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/></svg></div><h4>혈액순환 (총명주사)</h4><p>혈행 개선 · 집중력 향상</p></div>
+    <div class="info-card anim anim-d3"><div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div><h4>아르기닌</h4><p>혈관 건강 · 체력 증진</p></div>
+  </div>
+  <div class="anim" style="text-align:center;margin-top:48px;padding:32px;border:1px solid rgba(0,0,0,0.06);"><p style="color:var(--text-sub);font-size:0.88rem;">진료 예약 없이 바로 접수 가능 · 자세한 안내는 데스크에 문의해 주세요.</p></div>
+</div></section>
+<section class="sec-bg-dark"><div class="container"><div class="anim" style="max-width:700px;margin:0 auto;">
+  <div style="border:1px solid rgba(176,141,87,0.25);padding:48px 40px;">
+    <span class="badge badge-gold" style="margin-bottom:16px;">취급 안내</span>
+    <h3 style="font-family:var(--font-serif);font-size:1.3rem;font-weight:400;color:var(--white);margin-bottom:12px;">마운자로 (비만주사)</h3>
+    <p style="font-size:0.88rem;color:var(--text-sub);margin-bottom:24px;font-weight:300;">용량별 취급 제품을 안내드립니다.</p>
+    <div class="dose-tags"><span class="dose-tag" style="border-color:#a855f7;color:#a855f7;">2.5mg</span><span class="dose-tag" style="border-color:#ec4899;color:#ec4899;">5mg</span><span class="dose-tag" style="border-color:#f97316;color:#f97316;">7.5mg</span><span class="dose-tag" style="border-color:#14b8a6;color:#14b8a6;">10mg</span></div>
+    <p style="font-size:0.8rem;color:var(--text-sub);font-weight:300;margin-top:16px;">용량에 따라 색상 라벨로 구분됩니다.</p>
+    <div style="margin-top:24px;"><a href="tel:02-782-0051" class="btn btn-outline" style="padding:12px 28px;">상담 문의하기</a></div>
+  </div>
+</div></div></section>
+<div class="cta-section anim-scale"><h3>지금 바로 문의하세요</h3><p>수액 메뉴 및 시술 관련 궁금한 점을 안내해 드립니다.</p><a href="tel:02-782-0051" class="btn btn-gold">02-782-0051</a></div>
+<section class="page-bottom-info"><div class="container"><div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+  <div class="anim-left">
+    <div class="sec-label">Location</div>
+    <div class="sec-title" style="font-size:1.3rem;">오시는 길</div>
+    <div class="divider"></div>
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;">
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">주소</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">서울 영등포구 여의도<br>FKI타워 B1층</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">전화</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">02-782-0051</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">교통</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">여의도역 3번 출구 방면</div></div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+      <a href="https://naver.me/GI3JwKPj" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#03C75A;color:#fff;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">네이버지도</a>
+      <a href="https://place.map.kakao.com/22535459?referrer=daumsearch_local" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#FEE500;color:#391B1B;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">카카오맵</a>
+    </div>
+  </div>
+  <div class="anim-right">
+    <div class="sec-label">Hours</div>
+    <div class="sec-title" style="font-size:1.3rem;">진료시간</div>
+    <div class="divider"></div>
+    <div style="margin-top:24px;" class="page-hours">
+      <div class="p-hour-row" data-day="1"><span class="p-hour-day">월</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="2"><span class="p-hour-day">화</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="3"><span class="p-hour-day">수</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="4"><span class="p-hour-day">목</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="5"><span class="p-hour-day">금</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="6"><span class="p-hour-day">토</span><span class="p-hour-time p-closed">정기휴무</span></div>
+      <div class="p-hour-row" data-day="0"><span class="p-hour-day">일</span><span class="p-hour-time p-closed">정기휴무</span></div>
+    </div>
+    <div style="font-size:0.75rem;color:var(--text-sub);margin-top:10px;">상황에 따라 조기 마감될 수 있습니다.</div>
+  </div>
+</div></div></section>
+</div>
+
+<!-- PAGE 5: 피부·리프팅 -->
+<div class="page" id="page-skin">
+<div class="photo-banner"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/fb8afa5c042e4.png" alt="피부"><div class="photo-banner-content anim"><div class="sec-label">Laser & Lifting</div><h2>레이저 리프팅 센터</h2><p style="color:rgba(255,255,255,0.7);font-size:0.88rem;margin-top:8px;">Slow Aging — 일상에서 나만의 뷰티를 시작하다</p></div></div>
+<section><div class="container">
+  <div class="anim" style="text-align:center;margin-bottom:48px;">
+    <div class="sec-title">탱탱하고 투명한 볼륨라인</div>
+    <p style="color:var(--text-sub);font-size:0.88rem;font-weight:300;">처진 턱선을 단단하게 끌어올리는 리프팅</p>
+  </div>
+  <div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:48px;">
+    <div class="anim-left" style="position:relative;overflow:hidden;">
+      <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/d80ea6f0dd73e.png" alt="텐씨마" style="width:100%;height:400px;object-fit:cover;filter:brightness(0.55);transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:40px;">
+        <span class="badge badge-gold" style="align-self:flex-start;margin-bottom:12px;">Thermage RF</span>
+        <h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#fff;margin-bottom:8px;">텐씨마</h3>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.7);font-weight:300;margin-bottom:8px;">최대 출력 400W 고주파(RF) 리프팅</p>
+        <p style="font-size:0.82rem;color:var(--gold);">300샷 / 600샷 선택 가능</p>
+      </div>
+    </div>
+    <div class="anim-right" style="position:relative;overflow:hidden;">
+      <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/7bfa1c5947cd3.png" alt="텐쎄라" style="width:100%;height:400px;object-fit:cover;filter:brightness(0.55);transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:40px;">
+        <span class="badge badge-gold" style="align-self:flex-start;margin-bottom:12px;">HIFU Lifting</span>
+        <h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:#fff;margin-bottom:8px;">텐쎄라</h3>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.7);font-weight:300;margin-bottom:8px;">집속 초음파(HIFU), 근막층(SMAS) 작용</p>
+        <p style="font-size:0.82rem;color:var(--gold);">300라인 / 600라인 선택 가능</p>
+      </div>
+    </div>
+  </div>
+  <div class="anim-scale" style="margin-bottom:48px;text-align:center;border:1px solid rgba(176,141,87,0.25);padding:48px 40px;">
+    <span class="badge badge-gold" style="margin-bottom:16px;">Best Package</span>
+    <h3 style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:var(--white);margin-bottom:16px;">텐씨마 + 텐쎄라 콤비 패키지</h3>
+    <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
+      <div style="padding:16px 32px;border:1px solid rgba(0,0,0,0.06);"><span style="font-size:0.9rem;color:var(--white);">600샷 + 600라인</span></div>
+      <div style="padding:16px 32px;border:1px solid rgba(0,0,0,0.06);"><span style="font-size:0.9rem;color:var(--white);">300샷 + 300라인</span></div>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-sub);margin-top:20px;font-weight:300;">자세한 가격은 전화 상담 시 안내드립니다.</p>
+  </div>
+  <div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:48px;">
+    <div class="anim-left" style="border:1px solid rgba(0,0,0,0.06);padding:40px 32px;">
+      <span class="badge badge-outline" style="margin-bottom:16px;">색소 레이저</span>
+      <h4 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--white);font-weight:400;margin-bottom:12px;">기미 / 주근깨 / 점 / 검버섯</h4>
+      <p style="font-size:0.85rem;color:var(--text-sub);font-weight:300;">맞춤형 색소 레이저 치료</p>
+      <a href="tel:02-782-0051" class="btn btn-outline" style="margin-top:24px;padding:10px 24px;font-size:0.72rem;">상담 문의</a>
+    </div>
+    <div class="anim-right" style="border:1px solid rgba(0,0,0,0.06);padding:40px 32px;">
+      <span class="badge badge-outline" style="margin-bottom:16px;">15hz</span>
+      <h4 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--white);font-weight:400;margin-bottom:12px;">루카스 레이저토닝</h4>
+      <p style="font-size:0.85rem;color:var(--text-sub);font-weight:300;">"15hz의 마법" — 검색창에서 확인하세요</p>
+    </div>
+  </div>
+  <div class="anim mob-1col" style="display:grid;grid-template-columns:240px 1fr;gap:32px;align-items:center;border:1px solid rgba(0,0,0,0.06);padding:32px;margin-bottom:24px;">
+    <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/d2f4c53df2a52.png" alt="10THERA" style="width:100%;height:180px;object-fit:cover;">
+    <div><span class="badge badge-outline" style="margin-bottom:12px;">장비 소개</span><h4 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--white);font-weight:400;margin-bottom:12px;">10THERA 2 Line HIFU</h4><p style="font-size:0.85rem;color:var(--text-sub);font-weight:300;line-height:1.9;">2개의 트랜스듀서가 카트리지 내부에 들어있는 2라인 HIFU.<br>엘라스틴과 콜라겐을 생성하여 눈썹 거상 효과.<br>터치스크린을 이용한 에너지·조사간격 맞춤설정.</p></div>
+  </div>
+</div></section>
+<div class="cta-section anim-scale"><h3>지금 바로 문의하세요</h3><p>피부 고민에 맞는 맞춤 시술을 안내해 드립니다.</p><a href="tel:02-782-0051" class="btn btn-gold">02-782-0051</a></div>
+<section class="page-bottom-info"><div class="container"><div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+  <div class="anim-left">
+    <div class="sec-label">Location</div>
+    <div class="sec-title" style="font-size:1.3rem;">오시는 길</div>
+    <div class="divider"></div>
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;">
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">주소</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">서울 영등포구 여의도<br>FKI타워 B1층</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">전화</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">02-782-0051</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">교통</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">여의도역 3번 출구 방면</div></div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+      <a href="https://naver.me/GI3JwKPj" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#03C75A;color:#fff;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">네이버지도</a>
+      <a href="https://place.map.kakao.com/22535459?referrer=daumsearch_local" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#FEE500;color:#391B1B;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">카카오맵</a>
+    </div>
+  </div>
+  <div class="anim-right">
+    <div class="sec-label">Hours</div>
+    <div class="sec-title" style="font-size:1.3rem;">진료시간</div>
+    <div class="divider"></div>
+    <div style="margin-top:24px;" class="page-hours">
+      <div class="p-hour-row" data-day="1"><span class="p-hour-day">월</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="2"><span class="p-hour-day">화</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="3"><span class="p-hour-day">수</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="4"><span class="p-hour-day">목</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="5"><span class="p-hour-day">금</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="6"><span class="p-hour-day">토</span><span class="p-hour-time p-closed">정기휴무</span></div>
+      <div class="p-hour-row" data-day="0"><span class="p-hour-day">일</span><span class="p-hour-time p-closed">정기휴무</span></div>
+    </div>
+    <div style="font-size:0.75rem;color:var(--text-sub);margin-top:10px;">상황에 따라 조기 마감될 수 있습니다.</div>
+  </div>
+</div></div></section>
+</div>
+
+<!-- PAGE 6: 스킨케어·보톡스 -->
+<div class="page" id="page-skincare">
+<div class="photo-banner"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/8c73665b9df91.png" alt="스킨케어"><div class="photo-banner-content anim"><div class="sec-label">Skincare & Botox</div><h2>스킨부스터 & 보톡스</h2></div></div>
+<section><div class="container">
+  <div class="anim" style="margin-bottom:56px;">
+    <div class="sec-label">Skin Booster</div>
+    <div class="sec-title" style="font-size:1.4rem;">스킨부스터</div>
+    <div class="divider"></div>
+    <div class="info-grid" style="margin-top:32px;grid-template-columns:1fr 1fr;">
+      <div class="info-card"><h4>리쥬란힐러 HB</h4><p>피부재생 + 보습 관리 (PN + 히알루론산)</p></div>
+      <div class="info-card"><h4>리쥬란힐러</h4><p>피부재생 + 탄력 강화 (PN)</p></div>
+      <div class="info-card"><h4>물광주사</h4><p>반짝반짝 보습 (히알루론산)</p></div>
+      <div class="info-card"><h4>스킨보톡스</h4><p>모공 조임 + 잔주름 개선</p></div>
+    </div>
+  </div>
+  <div class="anim" style="margin-bottom:56px;">
+    <div class="sec-label">Botox</div>
+    <div class="sec-title" style="font-size:1.4rem;">보톡스</div>
+    <div class="divider"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;">
+      <span style="padding:10px 20px;border:1px solid rgba(201,169,110,0.2);color:var(--gold);font-size:0.85rem;">미간</span>
+      <span style="padding:10px 20px;border:1px solid rgba(201,169,110,0.2);color:var(--gold);font-size:0.85rem;">눈가</span>
+      <span style="padding:10px 20px;border:1px solid rgba(201,169,110,0.2);color:var(--gold);font-size:0.85rem;">입꼬리</span>
+      <span style="padding:10px 20px;border:1px solid rgba(201,169,110,0.2);color:var(--gold);font-size:0.85rem;">콧등</span>
+      <span style="padding:10px 20px;border:1px solid rgba(201,169,110,0.2);color:var(--gold);font-size:0.85rem;">자갈턱</span>
+      <span style="padding:10px 20px;border:1px solid rgba(201,169,110,0.2);color:var(--gold);font-size:0.85rem;">사각턱</span>
+      <span style="padding:10px 20px;border:1px solid rgba(201,169,110,0.2);color:var(--gold);font-size:0.85rem;">이마</span>
+      <span style="padding:10px 20px;border:1px solid rgba(201,169,110,0.2);color:var(--gold);font-size:0.85rem;">염증주사</span>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-sub);margin-top:16px;font-weight:300;">부위별 맞춤 시술 · 전화 상담 시 안내드립니다.</p>
+  </div>
+  <div class="anim" style="margin-bottom:56px;border:1px solid rgba(0,0,0,0.06);padding:40px 32px;">
+    <h4 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--white);font-weight:400;margin-bottom:12px;">이중턱 지방분해주사</h4>
+    <p style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">V라인 (브이올렛) — 턱선 정리에 효과적인 지방분해 시술</p>
+    <a href="tel:02-782-0051" class="btn btn-outline" style="margin-top:20px;padding:10px 24px;font-size:0.72rem;">상담 문의</a>
+  </div>
+  <div class="anim" style="margin-bottom:56px;">
+    <div class="sec-label">Package</div>
+    <div class="sec-title" style="font-size:1.4rem;">트리플 토닝 패키지</div>
+    <div class="divider"></div>
+    <p style="font-size:0.88rem;color:var(--text-sub);font-weight:300;margin-bottom:24px;">피부관리 포함 (미백앰플 · 초음파 · LED · 재생액)</p>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="padding:16px 24px;border:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;gap:12px;"><span style="color:var(--gold);">+</span><span style="font-size:0.88rem;color:var(--text-sub);">백옥수액 2앰플 5회 포함</span></div>
+      <div style="padding:16px 24px;border:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;gap:12px;"><span style="color:var(--gold);">+</span><span style="font-size:0.88rem;color:var(--text-sub);">비타민 관리 10회</span></div>
+      <div style="padding:16px 24px;border:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;gap:12px;"><span style="color:var(--gold);">+</span><span style="font-size:0.88rem;color:var(--text-sub);">GLA 관리 5회</span></div>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-sub);margin-top:16px;font-weight:300;">자세한 가격은 전화 문의 시 안내드립니다.</p>
+  </div>
+  <div class="anim" style="margin-bottom:56px;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <div class="sec-title" style="font-size:1.3rem;">속에서 끝까지 밝게 토닝</div>
+      <p style="color:var(--text-sub);font-size:0.88rem;font-weight:300;">프리미엄 스킨케어 프로그램</p>
+    </div>
+    <div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+      <div class="promo-card anim anim-d1"><h4>백옥주사</h4><span class="badge badge-gold" style="margin:8px 0;">피부 시술 시 추천</span><p style="font-size:0.82rem;color:var(--text-sub);margin-top:10px;font-weight:300;line-height:1.8;">피부 속 멜라닌 생성을 억제하여 피부 밝기·균일도가 올라가고 간기능 개선으로 피로회복까지.</p></div>
+      <div class="promo-card anim anim-d2"><h4>GLA 토닝</h4><span class="badge badge-gold" style="margin:8px 0;">토닝과 함께 추천</span><p style="font-size:0.82rem;color:var(--text-sub);margin-top:10px;font-weight:300;line-height:1.8;">골드 성분 앰플 도포 후 레이저를 조사하여 피부결·모공·잔주름·색소를 빠르게 개선.</p></div>
+    </div>
+  </div>
+  <div class="anim" style="margin-bottom:56px;">
+    <div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:32px;">
+      <div style="position:relative;overflow:hidden;height:280px;"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/bcfcf5c9ef029.png" alt="피부관리" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.55);transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'"><div style="position:absolute;bottom:24px;left:24px;"><span class="badge badge-gold">Event</span></div></div>
+      <div style="display:flex;flex-direction:column;justify-content:center;padding:40px;background:#f5f3ef;">
+        <h3 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:400;color:var(--white);margin-bottom:8px;">프리미엄 피부관리</h3>
+        <p style="font-size:0.85rem;color:var(--text-sub);font-weight:300;margin-bottom:16px;">비타민·보습·재생 피부상태에 맞춘 관리</p>
+        <div style="background:var(--gold);color:#fff;padding:10px 16px;font-size:0.82rem;font-weight:600;text-align:center;margin-bottom:16px;border-radius:4px;">해비 아워: 오전 11시 ~ 오후 4시</div>
+        <p style="font-size:0.82rem;color:var(--gold);">체험 1회 / 5회 / 10회 선택 가능</p>
+      </div>
+    </div>
+  </div>
+  <div class="anim mob-1col" style="display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:center;border:1px solid rgba(0,0,0,0.06);padding:32px;">
+    <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/d80ea6f0dd73e.png" alt="마데카" style="width:100%;height:150px;object-fit:cover;">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;"><h4 style="font-family:var(--font-serif);font-size:1rem;color:var(--white);font-weight:400;">MADECA MD Cream & Lotion</h4><span class="badge badge-green">실비보험 가능</span></div>
+      <p style="font-size:0.85rem;color:var(--text-sub);font-weight:300;line-height:1.9;">동국제약 마데카 MD 크림·로션 판매<br>3 TECA 기술 · 피부 장벽 강화 · KDCA 인증</p>
+    </div>
+  </div>
+</div></section>
+<div class="cta-section anim-scale"><h3>지금 바로 문의하세요</h3><p>나에게 맞는 스킨케어를 상담받아 보세요.</p><a href="tel:02-782-0051" class="btn btn-gold">02-782-0051</a></div>
+<section class="page-bottom-info"><div class="container"><div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+  <div class="anim-left">
+    <div class="sec-label">Location</div>
+    <div class="sec-title" style="font-size:1.3rem;">오시는 길</div>
+    <div class="divider"></div>
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;">
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">주소</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">서울 영등포구 여의도<br>FKI타워 B1층</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">전화</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">02-782-0051</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">교통</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">여의도역 3번 출구 방면</div></div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+      <a href="https://naver.me/GI3JwKPj" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#03C75A;color:#fff;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">네이버지도</a>
+      <a href="https://place.map.kakao.com/22535459?referrer=daumsearch_local" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#FEE500;color:#391B1B;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">카카오맵</a>
+    </div>
+  </div>
+  <div class="anim-right">
+    <div class="sec-label">Hours</div>
+    <div class="sec-title" style="font-size:1.3rem;">진료시간</div>
+    <div class="divider"></div>
+    <div style="margin-top:24px;" class="page-hours">
+      <div class="p-hour-row" data-day="1"><span class="p-hour-day">월</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="2"><span class="p-hour-day">화</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="3"><span class="p-hour-day">수</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="4"><span class="p-hour-day">목</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="5"><span class="p-hour-day">금</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="6"><span class="p-hour-day">토</span><span class="p-hour-time p-closed">정기휴무</span></div>
+      <div class="p-hour-row" data-day="0"><span class="p-hour-day">일</span><span class="p-hour-time p-closed">정기휴무</span></div>
+    </div>
+    <div style="font-size:0.75rem;color:var(--text-sub);margin-top:10px;">상황에 따라 조기 마감될 수 있습니다.</div>
+  </div>
+</div></div></section>
+</div>
+
+<!-- PAGE 7: 건강검진 -->
+<div class="page" id="page-checkup">
+<div class="photo-banner"><img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/7bfa1c5947cd3.png" alt="검진"><div class="photo-banner-content anim"><div class="sec-label">Health Checkup</div><h2>2026 국가건강검진</h2></div></div>
+<section><div class="container">
+  <div class="anim" style="margin-bottom:56px;border:1px solid rgba(176,141,87,0.25);padding:48px 40px;">
+    <span class="badge badge-gold" style="margin-bottom:16px;">무료</span>
+    <h3 style="font-family:var(--font-serif);font-size:1.4rem;font-weight:400;color:var(--white);margin-bottom:12px;">일반 건강검진</h3>
+    <p style="font-size:0.88rem;color:var(--text-sub);margin-bottom:24px;font-weight:300;">국민건강보험공단 건강검진</p>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;border:1px solid rgba(0,0,0,0.06);"><div style="width:8px;height:8px;border-radius:50%;background:var(--gold);"></div><span style="font-size:0.9rem;"><strong style="color:var(--white);">대상 1</strong> <span style="color:var(--text-sub);font-weight:300;">짝수년도 출생자</span></span></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;border:1px solid rgba(0,0,0,0.06);"><div style="width:8px;height:8px;border-radius:50%;background:var(--gold);"></div><span style="font-size:0.9rem;"><strong style="color:var(--white);">대상 2</strong> <span style="color:var(--text-sub);font-weight:300;">2026년 미수검자</span></span></div>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-sub);margin-top:20px;font-weight:300;">추가 신청 문의: 공단 1577-1000</p>
+  </div>
+  <div class="anim">
+    <div class="sec-label">Checkup Types</div>
+    <div class="sec-title" style="font-size:1.4rem;">검진 종류</div>
+    <div class="divider"></div>
+    <div class="info-grid" style="margin-top:32px;grid-template-columns:1fr 1fr;">
+      <div class="info-card"><h4>일반 건강검진</h4><p>국가검진</p></div>
+      <div class="info-card"><h4>채용검진</h4><p>입사 서류용</p></div>
+      <div class="info-card"><h4>혈액검사</h4><p>정밀 혈액 분석</p></div>
+      <div class="info-card"><h4>X-ray</h4><p>흉부 엑스레이</p></div>
+    </div>
+  </div>
+</div></section>
+<div class="cta-section anim-scale"><h3>검진 예약 전화하기</h3><p>검진 종류와 일정을 안내해 드립니다.</p><a href="tel:02-782-0051" class="btn btn-gold">02-782-0051</a></div>
+<section class="page-bottom-info"><div class="container"><div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+  <div class="anim-left">
+    <div class="sec-label">Location</div>
+    <div class="sec-title" style="font-size:1.3rem;">오시는 길</div>
+    <div class="divider"></div>
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;">
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">주소</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">서울 영등포구 여의도<br>FKI타워 B1층</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">전화</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">02-782-0051</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><div style="color:var(--gold);font-size:0.7rem;letter-spacing:0.1em;min-width:48px;padding-top:2px;">교통</div><div style="font-size:0.88rem;color:var(--text-sub);font-weight:300;">여의도역 3번 출구 방면</div></div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+      <a href="https://naver.me/GI3JwKPj" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#03C75A;color:#fff;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">네이버지도</a>
+      <a href="https://place.map.kakao.com/22535459?referrer=daumsearch_local" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#FEE500;color:#391B1B;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;">카카오맵</a>
+    </div>
+  </div>
+  <div class="anim-right">
+    <div class="sec-label">Hours</div>
+    <div class="sec-title" style="font-size:1.3rem;">진료시간</div>
+    <div class="divider"></div>
+    <div style="margin-top:24px;" class="page-hours">
+      <div class="p-hour-row" data-day="1"><span class="p-hour-day">월</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="2"><span class="p-hour-day">화</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="3"><span class="p-hour-day">수</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="4"><span class="p-hour-day">목</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="5"><span class="p-hour-day">금</span><span class="p-hour-time">09:00 – 18:00</span><span class="p-hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+      <div class="p-hour-row" data-day="6"><span class="p-hour-day">토</span><span class="p-hour-time p-closed">정기휴무</span></div>
+      <div class="p-hour-row" data-day="0"><span class="p-hour-day">일</span><span class="p-hour-time p-closed">정기휴무</span></div>
+    </div>
+    <div style="font-size:0.75rem;color:var(--text-sub);margin-top:10px;">상황에 따라 조기 마감될 수 있습니다.</div>
+  </div>
+</div></div></section>
+</div>
+
+<!-- FLOATING -->
+<div class="floating">
+  <a href="tel:02-782-0051" class="fab" title="전화"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg></a>
+  <button class="fab fab-dark" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5"/></svg></button>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">여의도 서울의원</div>
+      <div class="footer-logo-sub">Yeouido Seoul Clinic</div>
+      <div class="footer-info">서울특별시 영등포구 여의도<br>FKI타워 B1층<br>대표전화 02-782-0051</div>
+    </div>
+    <div>
+      <div class="footer-title">영업시간</div>
+      <div class="footer-info" id="business-hours">
+        <div class="hour-row" data-day="1"><span class="hour-day">월</span><span class="hour-time">09:00 – 18:00</span><span class="hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+        <div class="hour-row" data-day="2"><span class="hour-day">화</span><span class="hour-time">09:00 – 18:00</span><span class="hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+        <div class="hour-row" data-day="3"><span class="hour-day">수</span><span class="hour-time">09:00 – 18:00</span><span class="hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+        <div class="hour-row" data-day="4"><span class="hour-day">목</span><span class="hour-time">09:00 – 18:00</span><span class="hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+        <div class="hour-row" data-day="5"><span class="hour-day">금</span><span class="hour-time">09:00 – 18:00</span><span class="hour-detail">휴게 13-14시 · 마감 17:45</span></div>
+        <div class="hour-row" data-day="6"><span class="hour-day">토</span><span class="hour-time closed">정기휴무</span></div>
+        <div class="hour-row" data-day="0"><span class="hour-day">일</span><span class="hour-time closed">정기휴무</span></div>
+      </div>
+      <div style="font-size:0.68rem;color:#777;margin-top:8px;line-height:1.6;">상황에 따라 조기 마감될 수 있습니다.</div>
+    </div>
+    <div>
+      <div class="footer-title">Quick Links</div>
+      <div class="footer-links">
+        <a href="#" onclick="showPage('clinic')">진료안내</a>
+        <a href="#" onclick="showPage('vaccine')">예방접종</a>
+        <a href="#" onclick="showPage('iv')">수액·주사</a>
+        <a href="#" onclick="showPage('skin')">피부·리프팅</a>
+        <a href="#" onclick="showPage('skincare')">스킨케어·보톡스</a>
+        <a href="#" onclick="showPage('checkup')">건강검진</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 여의도 서울의원. All rights reserved.</span>
+    <div class="footer-sns">
+      <a href="#" title="네이버">N</a>
+      <a href="#" title="카카오" style="background:#FEE500;color:#391B1B;border-color:#FEE500;">K</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navigation
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo({top:0});
+  // Update nav
+  document.querySelectorAll('.desktop-nav a,.mobile-nav a').forEach(a=>{a.classList.remove('active');if(a.dataset.page===id)a.classList.add('active');});
+  // Close mobile
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('menuBtn').classList.remove('open');
+  document.body.style.overflow='';
+  // Re-observe
+  setTimeout(()=>{document.querySelectorAll('.anim,.anim-left,.anim-right,.anim-scale').forEach(el=>{el.classList.remove('show');observer.observe(el);});},50);
+}
+function toggleMenu(){
+  const m=document.getElementById('mobileNav'),b=document.getElementById('menuBtn');
+  m.classList.toggle('open');b.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+
+// Header scroll
+const header=document.getElementById('mainHeader');
+window.addEventListener('scroll',()=>{
+  header.classList.toggle('header--top',window.scrollY<50);
+  header.classList.toggle('header--scrolled',window.scrollY>=50);
+});
+window.dispatchEvent(new Event('scroll'));
+
+// Intersection Observer
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.anim,.anim-left,.anim-right,.anim-scale').forEach(el=>observer.observe(el));
+
+// Counter Animation
+const counterObserver=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const nums=e.target.querySelectorAll('[data-count]');nums.forEach(n=>{const target=+n.dataset.count;const dur=2000;const start=performance.now();const fmt=v=>target>=1000?(v/1000).toFixed(v>=target?0:1)+'K+':v.toLocaleString();(function step(now){const p=Math.min((now-start)/dur,1);const ease=1-Math.pow(1-p,3);n.textContent=fmt(Math.round(target*ease));if(p<1)requestAnimationFrame(step);})(start);});counterObserver.unobserve(e.target);}});},{threshold:0.3});
+document.querySelectorAll('.stats-row').forEach(el=>counterObserver.observe(el));
+
+// Parallax
+window.addEventListener('scroll',()=>{
+  const hero=document.getElementById('heroImg');
+  if(hero){const r=hero.getBoundingClientRect();if(r.bottom>0)hero.style.transform=`scale(1.05) translateY(${window.scrollY*0.15}px)`;}
+});
+// 오늘 요일 하이라이트
+(function(){
+  const today = new Date().getDay();
+  const row = document.querySelector('.hour-row[data-day="'+today+'"]');
+  if(row) row.classList.add('today');
+  document.querySelectorAll('.p-hour-row[data-day="'+today+'"]').forEach(r=>r.classList.add('p-today'));
+})();
+</script>
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+<script charset="UTF-8">
+  function initRoughmap(){
+    new daum.roughmap.Lander({
+      "timestamp" : "1774989837747",
+      "key" : "29h9ucsfmazv",
+      "mapWidth" : "640",
+      "mapHeight" : "360"
+    }).render();
+  }
+  if(window.daum && daum.roughmap){initRoughmap();}
+  else{document.querySelector('.daum_roughmap_loader_script').onload=initRoughmap;}
+</script>
+</body>
+</html>
