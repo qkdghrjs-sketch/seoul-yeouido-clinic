@@ -27,6 +27,7 @@ function getTodayKey(id: string) {
 
 export default function PopupBanner() {
   const [visiblePopups, setVisiblePopups] = useState<string[]>([]);
+  const [mobileIndex, setMobileIndex] = useState(0);
 
   useEffect(() => {
     const visible = POPUPS.filter(
@@ -36,7 +37,12 @@ export default function PopupBanner() {
   }, []);
 
   function closePopup(id: string) {
-    setVisiblePopups((prev) => prev.filter((v) => v !== id));
+    setVisiblePopups((prev) => {
+      const next = prev.filter((v) => v !== id);
+      // 현재 캐러셀 인덱스가 범위를 벗어나지 않도록 조정
+      setMobileIndex((i) => Math.min(i, Math.max(next.length - 1, 0)));
+      return next;
+    });
   }
 
   function closeToday(id: string) {
@@ -47,6 +53,7 @@ export default function PopupBanner() {
   if (visiblePopups.length === 0) return null;
 
   const activePopups = POPUPS.filter((p) => visiblePopups.includes(p.id));
+  const currentPopup = activePopups[mobileIndex] ?? activePopups[0];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -56,18 +63,83 @@ export default function PopupBanner() {
         onClick={() => activePopups.forEach((p) => closePopup(p.id))}
       />
 
-      {/* 팝업 컨테이너 — 모바일: 세로 스크롤 / 데스크탑: 가로 나열 */}
-      <div className="relative z-10 w-full max-w-5xl max-h-[90dvh] overflow-y-auto px-4 py-4
-                      flex flex-col gap-4 items-center
-                      md:flex-row md:flex-wrap md:justify-center md:items-start md:overflow-visible md:max-h-none">
+      {/* ─── 모바일: 캐러셀 (1개씩) ─── */}
+      <div className="relative z-10 md:hidden flex flex-col items-center w-full px-4">
+        <div
+          className="relative bg-white shadow-2xl rounded-xl overflow-hidden flex flex-col w-full"
+          style={{ maxWidth: "min(92vw, 360px)" }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* X 닫기 */}
+          <button
+            onClick={() => closePopup(currentPopup.id)}
+            className="absolute top-2 right-2 z-20 w-8 h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full text-sm font-bold transition-colors"
+            aria-label="닫기"
+          >
+            ✕
+          </button>
+
+          {/* 팝업 이미지 — 화면 높이에서 버튼 영역 뺀 만큼만 */}
+          <div
+            className="relative w-full"
+            style={{
+              aspectRatio: "1 / 1.2",
+              maxHeight: "calc(80dvh - 48px)",
+            }}
+          >
+            <Image
+              src={currentPopup.src}
+              alt={currentPopup.alt}
+              fill
+              className="object-contain"
+              priority
+              unoptimized
+            />
+          </div>
+
+          {/* 하단 버튼 */}
+          <div className="flex border-t border-gray-200 text-sm">
+            <button
+              onClick={() => closeToday(currentPopup.id)}
+              className="flex-1 py-3 text-gray-500 active:bg-gray-100 transition-colors border-r border-gray-200"
+            >
+              오늘 하루 보지 않기
+            </button>
+            <button
+              onClick={() => closePopup(currentPopup.id)}
+              className="flex-1 py-3 text-gray-700 font-medium active:bg-gray-100 transition-colors"
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+
+        {/* 페이지 도트 (2개 이상일 때만) */}
+        {activePopups.length > 1 && (
+          <div className="flex gap-2 mt-3">
+            {activePopups.map((p, i) => (
+              <button
+                key={p.id}
+                onClick={(e) => { e.stopPropagation(); setMobileIndex(i); }}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  i === mobileIndex ? "bg-white" : "bg-white/40"
+                }`}
+                aria-label={`팝업 ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* ─── 데스크탑: 가로 나열 ─── */}
+      <div className="relative z-10 hidden md:flex flex-wrap gap-4 justify-center items-start px-4 max-w-5xl w-full">
         {activePopups.map((popup, index) => (
           <div
             key={popup.id}
-            className="relative bg-white shadow-2xl rounded-lg overflow-hidden flex flex-col
-                       w-[min(85vw,340px)] md:w-[clamp(260px,30vw,360px)]"
+            className="relative bg-white shadow-2xl rounded-lg overflow-hidden flex flex-col"
+            style={{ width: "clamp(260px, 30vw, 360px)" }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* X 닫기 버튼 */}
             <button
               onClick={() => closePopup(popup.id)}
               className="absolute top-2 right-2 z-20 w-8 h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full text-sm font-bold transition-colors"
@@ -76,11 +148,7 @@ export default function PopupBanner() {
               ✕
             </button>
 
-            {/* 팝업 이미지 */}
-            <div
-              className="relative w-full"
-              style={{ aspectRatio: "1 / 1.2" }}
-            >
+            <div className="relative w-full" style={{ aspectRatio: "1 / 1.2" }}>
               <Image
                 src={popup.src}
                 alt={popup.alt}
@@ -91,7 +159,6 @@ export default function PopupBanner() {
               />
             </div>
 
-            {/* 하단 버튼 영역 */}
             <div className="flex border-t border-gray-200 text-sm">
               <button
                 onClick={() => closeToday(popup.id)}
