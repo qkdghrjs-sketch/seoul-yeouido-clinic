@@ -1088,19 +1088,29 @@ window.addEventListener('scroll',()=>{
 /* 모바일: 캐러셀 (1개씩) */
 #popup-dots{display:none;}
 @media(max-width:640px){
-  #popup-overlay{padding:0;align-items:center;}
+  #popup-overlay{
+    padding:0;
+    align-items:center;
+    justify-content:flex-start;
+    padding-left:6vw;          /* 왼쪽으로 이동 */
+  }
   #popup-wrap{
-    flex-direction:column;align-items:center;
-    gap:0;width:100%;max-width:100%;
+    flex-direction:column;align-items:flex-start;
+    gap:0;width:auto;max-width:100%;
   }
   .popup-card{
     display:none;
-    width:min(92vw,360px);
+    width:88vw;                /* 화면 너비 기준 반응형 */
+    max-width:360px;
     box-shadow:0 8px 32px rgba(0,0,0,0.35);
     border-radius:10px;overflow:hidden;
   }
   .popup-card.active{display:flex;}
-  .popup-card img{max-height:calc(80svh - 48px);object-fit:contain;}
+  .popup-card img{
+    width:100%;height:auto;
+    max-height:68svh;          /* 화면 높이 기준 반응형 */
+    object-fit:contain;
+  }
   .popup-footer button{padding:13px 4px;font-size:13px;}
   #popup-dots{
     display:flex;gap:8px;margin-top:12px;
