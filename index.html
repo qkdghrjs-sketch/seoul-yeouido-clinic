@@ -1041,5 +1041,130 @@ window.addEventListener('scroll',()=>{
   if(window.daum && daum.roughmap){initRoughmap();}
   else{document.querySelector('.daum_roughmap_loader_script').onload=initRoughmap;}
 </script>
+
+<!-- ===== POPUP BANNER ===== -->
+<style>
+#popup-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,0.6);
+  display:flex;align-items:center;justify-content:center;
+  padding:16px;
+}
+#popup-overlay.hidden{display:none;}
+#popup-wrap{
+  display:flex;flex-wrap:wrap;gap:12px;
+  justify-content:center;align-items:flex-start;
+  max-width:1100px;width:100%;
+}
+.popup-card{
+  background:#fff;
+  box-shadow:0 8px 32px rgba(0,0,0,0.3);
+  display:flex;flex-direction:column;
+  width:clamp(240px,28vw,340px);
+  flex-shrink:0;
+  position:relative;
+}
+.popup-card img{width:100%;display:block;object-fit:cover;}
+.popup-card .popup-close-x{
+  position:absolute;top:8px;right:8px;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(0,0,0,0.55);color:#fff;
+  border:none;cursor:pointer;font-size:14px;font-weight:bold;
+  display:flex;align-items:center;justify-content:center;
+  line-height:1;
+}
+.popup-card .popup-close-x:hover{background:rgba(0,0,0,0.85);}
+.popup-footer{
+  display:flex;border-top:1px solid #e0e0e0;
+  font-size:13px;
+}
+.popup-footer button{
+  flex:1;padding:11px 4px;background:#fff;border:none;cursor:pointer;color:#555;
+}
+.popup-footer button:first-child{border-right:1px solid #e0e0e0;}
+.popup-footer button:hover{background:#f5f5f5;}
+@media(max-width:640px){
+  .popup-card{width:calc(50% - 6px);min-width:140px;}
+  .popup-footer{font-size:11px;}
+  .popup-footer button{padding:9px 2px;}
+}
+@media(max-width:400px){
+  #popup-wrap{flex-direction:column;align-items:center;}
+  .popup-card{width:90vw;}
+}
+</style>
+
+<div id="popup-overlay">
+  <div id="popup-wrap">
+    <div class="popup-card" id="pc1">
+      <button class="popup-close-x" onclick="closePopup('pc1')">✕</button>
+      <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/4eeb25f6971f8.png" alt="공지 팝업 1" loading="eager">
+      <div class="popup-footer">
+        <button onclick="hideTodayAndClose('pc1')">오늘 하루 보지 않기</button>
+        <button onclick="closePopup('pc1')">닫기</button>
+      </div>
+    </div>
+    <div class="popup-card" id="pc2">
+      <button class="popup-close-x" onclick="closePopup('pc2')">✕</button>
+      <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/c1f29b9d0b749.png" alt="공지 팝업 2" loading="eager">
+      <div class="popup-footer">
+        <button onclick="hideTodayAndClose('pc2')">오늘 하루 보지 않기</button>
+        <button onclick="closePopup('pc2')">닫기</button>
+      </div>
+    </div>
+    <div class="popup-card" id="pc3">
+      <button class="popup-close-x" onclick="closePopup('pc3')">✕</button>
+      <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/a2ea8da8080fa.png" alt="공지 팝업 3" loading="eager">
+      <div class="popup-footer">
+        <button onclick="hideTodayAndClose('pc3')">오늘 하루 보지 않기</button>
+        <button onclick="closePopup('pc3')">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var today = new Date().toISOString().slice(0,10);
+  var ids = ['pc1','pc2','pc3'];
+  ids.forEach(function(id){
+    if(localStorage.getItem('popup_hide_'+id+'_'+today)){
+      var el = document.getElementById(id);
+      if(el) el.style.display='none';
+    }
+  });
+  checkOverlay();
+})();
+
+function checkOverlay(){
+  var anyVisible = ['pc1','pc2','pc3'].some(function(id){
+    var el = document.getElementById(id);
+    return el && el.style.display !== 'none';
+  });
+  if(!anyVisible){
+    document.getElementById('popup-overlay').classList.add('hidden');
+  }
+}
+
+function closePopup(id){
+  var el = document.getElementById(id);
+  if(el) el.style.display='none';
+  checkOverlay();
+}
+
+function hideTodayAndClose(id){
+  var today = new Date().toISOString().slice(0,10);
+  localStorage.setItem('popup_hide_'+id+'_'+today,'1');
+  closePopup(id);
+}
+
+document.getElementById('popup-overlay').addEventListener('click', function(e){
+  if(e.target === this){
+    ['pc1','pc2','pc3'].forEach(function(id){ closePopup(id); });
+  }
+});
+</script>
+<!-- ===== /POPUP BANNER ===== -->
+
 </body>
 </html>
