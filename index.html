@@ -22,7 +22,7 @@
   --transition:0.5s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip;}
 body{font-family:var(--font-sans);color:var(--text);background:var(--black);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 img{max-width:100%;display:block;}
 a{text-decoration:none;color:inherit;}
@@ -1043,29 +1043,31 @@ window.addEventListener('scroll',()=>{
 </script>
 
 <!-- ===== POPUP BANNER ===== -->
+<!-- 2026-11-11 원장님 요청: 기존 3장 삭제 → 새 4장. 사진은 popup/ 폴더 -->
 <style>
 #popup-overlay{
   position:fixed;inset:0;z-index:9999;
   background:rgba(0,0,0,0.6);
   display:flex;align-items:center;justify-content:center;
-  padding:16px;
+  padding:16px;overflow-y:auto;
 }
 #popup-overlay.hidden{display:none;}
-/* 데스크탑: 가로 나열 */
+#popup-inner{display:flex;flex-direction:column;align-items:center;margin:auto;max-width:100%;}
+/* PC: 가로로 4장 나란히 */
 #popup-wrap{
   display:flex;flex-wrap:wrap;gap:12px;
   justify-content:center;align-items:flex-start;
-  max-width:1100px;width:100%;
+  max-width:1280px;width:100%;
 }
 .popup-card{
   background:#fff;
   box-shadow:0 8px 32px rgba(0,0,0,0.3);
   display:flex;flex-direction:column;
-  width:clamp(240px,28vw,340px);
+  width:clamp(200px,22vw,300px);
   flex-shrink:0;
   position:relative;
 }
-.popup-card img{width:100%;display:block;object-fit:contain;}
+.popup-card img{width:100%;height:auto;display:block;object-fit:contain;}
 .popup-card .popup-close-x{
   position:absolute;top:8px;right:8px;
   width:30px;height:30px;border-radius:50%;
@@ -1085,70 +1087,71 @@ window.addEventListener('scroll',()=>{
 }
 .popup-footer button:first-child{border-right:1px solid #e0e0e0;}
 .popup-footer button:hover{background:#f5f5f5;}
-/* 모바일: 캐러셀 (1개씩) */
 #popup-dots{display:none;}
+/* 휴대폰: 한 장씩, 아래 점(●)이나 좌우로 밀어서 넘김 */
 @media(max-width:640px){
-  #popup-overlay{
-    padding:0;
-    align-items:center;
-    justify-content:flex-start;
-    padding-left:6vw;          /* 왼쪽으로 이동 */
-  }
-  #popup-wrap{
-    flex-direction:column;align-items:flex-start;
-    gap:0;width:auto;max-width:100%;
-  }
+  #popup-overlay{padding:12px;}
+  #popup-wrap{flex-direction:column;align-items:center;gap:0;width:auto;max-width:100%;}
   .popup-card{
     display:none;
-    width:88vw;                /* 화면 너비 기준 반응형 */
-    max-width:360px;
+    width:auto;max-width:min(92vw,400px);
     box-shadow:0 8px 32px rgba(0,0,0,0.35);
     border-radius:10px;overflow:hidden;
   }
   .popup-card.active{display:flex;}
   .popup-card img{
-    width:100%;height:auto;
-    max-height:68svh;          /* 화면 높이 기준 반응형 */
-    object-fit:contain;
+    width:auto;max-width:100%;height:auto;
+    max-height:calc(100vh - 150px);
+    max-height:calc(100svh - 150px);   /* 버튼·점이 화면 안에 남도록 */
+    margin:0 auto;
   }
-  .popup-footer button{padding:13px 4px;font-size:13px;}
-  #popup-dots{
-    display:flex;gap:8px;margin-top:12px;
-  }
+  .popup-footer button{padding:13px 4px;font-size:14px;}
+  #popup-dots{display:flex;gap:6px;margin-top:10px;}
   .popup-dot{
-    width:8px;height:8px;border-radius:50%;
-    background:rgba(255,255,255,0.4);
-    border:none;cursor:pointer;padding:0;
+    width:28px;height:28px;border:none;background:none;cursor:pointer;padding:0;
+    display:flex;align-items:center;justify-content:center;
   }
-  .popup-dot.active{background:#fff;}
+  .popup-dot::before{
+    content:"";width:9px;height:9px;border-radius:50%;
+    background:rgba(255,255,255,0.45);
+  }
+  .popup-dot.active::before{background:#fff;}
 }
 </style>
 
 <div id="popup-overlay">
-  <div style="display:flex;flex-direction:column;align-items:center;">
+  <div id="popup-inner">
     <div id="popup-wrap">
-      <div class="popup-card" id="pc1">
-        <button class="popup-close-x" onclick="closePopup('pc1')">✕</button>
-        <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/4eeb25f6971f8.png" alt="공지 팝업 1" loading="eager">
+      <div class="popup-card" id="pn1">
+        <button class="popup-close-x" onclick="closePopup('pn1')" aria-label="닫기">✕</button>
+        <img src="popup/popup-20261111-1.jpg" alt="10분 수액 안내 — 고용량 비타민C·마늘 주사·백옥 주사 등 수액 종류와 비용" width="1000" height="1414" loading="eager">
         <div class="popup-footer">
-          <button onclick="hideTodayAndClose('pc1')">오늘 하루 보지 않기</button>
-          <button onclick="closePopup('pc1')">닫기</button>
+          <button onclick="hideTodayAndClose('pn1')">오늘 하루 보지 않기</button>
+          <button onclick="closePopup('pn1')">닫기</button>
         </div>
       </div>
-      <div class="popup-card" id="pc2">
-        <button class="popup-close-x" onclick="closePopup('pc2')">✕</button>
-        <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/c1f29b9d0b749.png" alt="공지 팝업 2" loading="eager">
+      <div class="popup-card" id="pn2">
+        <button class="popup-close-x" onclick="closePopup('pn2')" aria-label="닫기">✕</button>
+        <img src="popup/popup-20261111-2.jpg" alt="피부 시술 안내 — 텐써마 고주파 리프팅, 텐쎄라 초음파 리프팅, 색소 레이저, 리쥬란" width="1000" height="1414" loading="eager">
         <div class="popup-footer">
-          <button onclick="hideTodayAndClose('pc2')">오늘 하루 보지 않기</button>
-          <button onclick="closePopup('pc2')">닫기</button>
+          <button onclick="hideTodayAndClose('pn2')">오늘 하루 보지 않기</button>
+          <button onclick="closePopup('pn2')">닫기</button>
         </div>
       </div>
-      <div class="popup-card" id="pc3">
-        <button class="popup-close-x" onclick="closePopup('pc3')">✕</button>
-        <img src="https://cdn.imweb.me/upload/S20260108b9005a7eb2710/a2ea8da8080fa.png" alt="공지 팝업 3" loading="eager">
+      <div class="popup-card" id="pn3">
+        <button class="popup-close-x" onclick="closePopup('pn3')" aria-label="닫기">✕</button>
+        <img src="popup/popup-20261111-3.jpg" alt="성인 예방접종 안내 — 폐렴구균·대상포진·백일해·간염·자궁경부암·MMR·독감" width="1000" height="1414" loading="eager">
         <div class="popup-footer">
-          <button onclick="hideTodayAndClose('pc3')">오늘 하루 보지 않기</button>
-          <button onclick="closePopup('pc3')">닫기</button>
+          <button onclick="hideTodayAndClose('pn3')">오늘 하루 보지 않기</button>
+          <button onclick="closePopup('pn3')">닫기</button>
+        </div>
+      </div>
+      <div class="popup-card" id="pn4">
+        <button class="popup-close-x" onclick="closePopup('pn4')" aria-label="닫기">✕</button>
+        <img src="popup/popup-20261111-4.jpg" alt="여의도 서울의원 진료 안내 — 고혈압·고지혈증·당뇨병·갑상선 질환·통풍 등" width="1000" height="1414" loading="eager">
+        <div class="popup-footer">
+          <button onclick="hideTodayAndClose('pn4')">오늘 하루 보지 않기</button>
+          <button onclick="closePopup('pn4')">닫기</button>
         </div>
       </div>
     </div>
@@ -1158,12 +1161,14 @@ window.addEventListener('scroll',()=>{
 
 <script>
 (function(){
-  var ALL_IDS = ['pc1','pc2','pc3'];
+  var ALL_IDS = ['pn1','pn2','pn3','pn4'];
   var today = new Date().toISOString().slice(0,10);
 
   // 오늘 숨김 처리된 팝업 제거
   ALL_IDS.forEach(function(id){
-    if(localStorage.getItem('popup_hide_'+id+'_'+today)){
+    var hidden = false;
+    try{ hidden = !!localStorage.getItem('popup_hide_'+id+'_'+today); }catch(e){}
+    if(hidden){
       var el = document.getElementById(id);
       if(el) el.parentNode.removeChild(el);
     }
@@ -1221,7 +1226,7 @@ window.addEventListener('scroll',()=>{
   };
 
   window.hideTodayAndClose = function(id){
-    localStorage.setItem('popup_hide_'+id+'_'+today,'1');
+    try{ localStorage.setItem('popup_hide_'+id+'_'+today,'1'); }catch(e){}
     closePopup(id);
   };
 
@@ -1230,11 +1235,27 @@ window.addEventListener('scroll',()=>{
   checkOverlay();
   window.addEventListener('resize', renderMobile);
 
+  // 휴대폰: 좌우로 밀어서 넘기기
+  var sx = null, sy = null;
+  var wrap = document.getElementById('popup-wrap');
+  wrap.addEventListener('touchstart', function(e){
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+  }, {passive:true});
+  wrap.addEventListener('touchend', function(e){
+    if(sx === null || !isMobile()) return;
+    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    sx = null;
+    if(Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+    var n = getVisible().length;
+    if(n < 2) return;
+    mobileIdx = (mobileIdx + (dx < 0 ? 1 : -1) + n) % n;
+    renderMobile();
+  }, {passive:true});
+
+  // 바깥(어두운 곳)을 누르면 전부 닫기
   document.getElementById('popup-overlay').addEventListener('click', function(e){
-    if(e.target === this || e.target.id === 'popup-wrap' || e.target.closest('#popup-dots')){
-      if(!e.target.closest('#popup-dots')){
-        getVisible().forEach(function(c){ closePopup(c.id); });
-      }
+    if(e.target === this || e.target.id === 'popup-wrap' || e.target.id === 'popup-inner'){
+      getVisible().forEach(function(c){ closePopup(c.id); });
     }
   });
 })();
