@@ -935,7 +935,7 @@ document.querySelectorAll('.anim,.anim-left,.anim-right,.anim-scale').forEach(el
 </script>
 
 <!-- ===== POPUP BANNER ===== -->
-<!-- 2026-11-11 원장님 요청: 기존 3장 삭제 → 새 4장. 사진은 popup/ 폴더 -->
+<!-- 2026-11-11 원장님 요청: 기존 3장 삭제 → 새 4장 (11-17 2번 그림 서울의원 표기로 교체, id pn5). 사진은 popup/ 폴더 -->
 <style>
 #popup-overlay{
   position:fixed;inset:0;z-index:9999;
@@ -1022,12 +1022,12 @@ document.querySelectorAll('.anim,.anim-left,.anim-right,.anim-scale').forEach(el
           <button onclick="closePopup('pn1')">닫기</button>
         </div>
       </div>
-      <div class="popup-card" id="pn2">
-        <button class="popup-close-x" onclick="closePopup('pn2')" aria-label="닫기">✕</button>
-        <img src="popup/popup-20261111-2.jpg" alt="피부 시술 안내 — 텐써마 고주파 리프팅, 텐쎄라 초음파 리프팅, 색소 레이저, 리쥬란" width="1000" height="1414" loading="eager">
+      <div class="popup-card" id="pn5">
+        <button class="popup-close-x" onclick="closePopup('pn5')" aria-label="닫기">✕</button>
+        <img src="popup/popup-20261117-2.jpg" alt="피부 시술 안내 — 텐써마 고주파 리프팅, 텐쎄라 초음파 리프팅, 색소 레이저, 리쥬란" width="1000" height="1414" loading="eager">
         <div class="popup-footer">
-          <button onclick="hideTodayAndClose('pn2')">오늘 하루 보지 않기</button>
-          <button onclick="closePopup('pn2')">닫기</button>
+          <button onclick="hideTodayAndClose('pn5')">오늘 하루 보지 않기</button>
+          <button onclick="closePopup('pn5')">닫기</button>
         </div>
       </div>
       <div class="popup-card" id="pn3">
@@ -1053,7 +1053,7 @@ document.querySelectorAll('.anim,.anim-left,.anim-right,.anim-scale').forEach(el
 
 <script>
 (function(){
-  var ALL_IDS = ['pn1','pn2','pn3','pn4'];
+  var ALL_IDS = ['pn1','pn5','pn3','pn4'];
   var today = new Date().toISOString().slice(0,10);
 
   // 오늘 숨김 처리된 팝업 제거
